@@ -1,665 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhijeet Gaikwad | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            --primary-color: #FD6F00;
-            --primary-light: #fff0e6; /* Light orange for backgrounds */
-            --text-dark: #1E1E1E;
-            --text-light: #666666;
-            --bg-white: #FFFFFF;
-            --bg-off-white: #FAFAFA;
-            --shadow-sm: 0 5px 15px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
-            --font-main: 'Poppins', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Sudhir Jagtap | Executive Portfolio</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: var(--font-main);
-            scroll-behavior: smooth;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+<style>
+:root{
+  --bg:#0A1118;
+  --surface:#141C24;
+  --text-primary:#E8EAE6;
+  --text-secondary:#9CA3AF;
+  --accent:#C5A880;
+  --secondary-accent:#2A4D45;
+}
 
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            color: var(--text-dark);
-            line-height: 1.2;
-        }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+  scroll-behavior:smooth;
+}
 
-        p {
-            color: var(--text-light);
-            font-size: 1.05rem;
-            margin-bottom: 1rem;
-        }
+body{
+  background:var(--bg);
+  color:var(--text-primary);
+  overflow-x:hidden;
+}
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-        }
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
 
-        .section-padding {
-            padding: 100px 8%;
-        }
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px 10%;
+  display:flex;
+  justify-content:space-between;
+  background:rgba(10,17,24,0.85);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
 
-        .section-subtitle {
-            color: var(--primary-color);
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 10px;
-        }
+nav a{
+  color:var(--text-secondary);
+  text-decoration:none;
+  margin-left:25px;
+  font-weight:500;
+}
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
+nav a:hover{
+  color:var(--accent);
+}
 
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            border: 2px solid transparent;
-        }
+section{
+  padding:120px 10%;
+}
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-            box-shadow: 0 5px 15px rgba(253, 111, 0, 0.3);
-        }
+h1,h2,h3{
+  font-weight:600;
+}
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(253, 111, 0, 0.5);
-            background-color: #e66400;
-        }
+p{
+  color:var(--text-secondary);
+  line-height:1.8;
+}
 
-        .btn-outline {
-            border-color: #ddd;
-            background: transparent;
-            color: var(--text-dark);
-            margin-left: 10px;
-        }
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+}
 
-        .btn-outline:hover {
-            border-color: var(--text-dark);
-            background: var(--text-dark);
-            color: white;
-        }
+.hero-container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:60px;
+  width:100%;
+}
 
-        /* --- NAVBAR --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
+.hero-text h1{
+  font-size:3rem;
+}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
+.hero-text span{
+  color:var(--accent);
+}
 
-        .logo span { color: var(--primary-color); }
+.hero-text p{
+  margin:25px 0;
+  max-width:550px;
+}
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
+.profile-img{
+  width:300px;
+  height:300px;
+  object-fit:cover;
+  border-radius:12px;
+  background:var(--surface);
+  padding:6px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
 
-        nav ul li a {
-            font-weight: 500;
-            font-size: 1rem;
-            position: relative;
-        }
+.btn{
+  display:inline-block;
+  padding:12px 28px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:500;
+  margin-right:12px;
+  transition:0.3s;
+  border:1px solid var(--accent);
+  color:var(--accent);
+}
 
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s;
-        }
+.btn-primary{
+  background:var(--accent);
+  color:#0A1118;
+}
 
-        nav ul li a:hover::after {
-            width: 100%;
-        }
+.btn:hover{
+  opacity:0.85;
+  transform:translateY(-2px);
+}
 
-        nav ul li a:hover { color: var(--primary-color); }
+.section-title{
+  font-size:2rem;
+  margin-bottom:30px;
+  color:var(--accent);
+}
 
-        /* --- HERO SECTION --- */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            min-height: 90vh;
-            padding-top: 50px;
-            padding-bottom: 100px;
-        }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
 
-        .hero-content {
-            max-width: 50%;
-            animation: fadeIn 1s ease-out;
-        }
+.card{
+  background:var(--surface);
+  padding:35px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.05);
+  transition:0.3s;
+}
 
-        .hero-title {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
+.card:hover{
+  border-color:var(--accent);
+  transform:translateY(-6px);
+}
 
-        .hero-desc {
-            font-size: 1.15rem;
-            margin-bottom: 35px;
-            max-width: 90%;
-            opacity: 0.9;
-        }
+.contact-info{
+  font-size:16px;
+  line-height:2;
+}
 
-        .hero-image-container {
-            position: relative;
-            width: 450px;
-            height: 450px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: float 6s ease-in-out infinite;
-        }
+.contact-info a{
+  color:var(--accent);
+  text-decoration:none;
+}
 
-        .hero-blob {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 50% 40% 30% 70% / 60% 30% 70% 40%;
-            z-index: -1;
-            opacity: 0.1;
-            transition: border-radius 1s;
-        }
+footer{
+  padding:50px 10%;
+  text-align:center;
+  color:var(--text-secondary);
+  border-top:1px solid rgba(255,255,255,0.05);
+  margin-top:80px;
+}
 
-        .hero-img {
-            width: 85%;
-            height: 85%;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 8px solid white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        /* --- ABOUT & SKILLS --- */
-        .about-section {
-            background-color: var(--bg-off-white);
-            display: flex;
-            gap: 60px;
-            align-items: flex-start;
-        }
-
-        .about-text { flex: 1; }
-
-        .skills-wrapper { margin-top: 40px; }
-
-        .skill-category { margin-bottom: 25px; }
-        
-        .skill-category h4 {
-            font-size: 1rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .skill-category h4 i { color: var(--primary-color); }
-
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .skill-tag {
-            background: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-            transition: 0.3s;
-            cursor: default;
-        }
-
-        .skill-tag:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            background: var(--primary-light);
-            transform: translateY(-2px);
-        }
-
-        /* --- PROJECTS & CARDS --- */
-        .portfolio-section { background: white; }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
-        }
-
-        .card {
-            background: white;
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #f0f0f0;
-            position: relative;
-            overflow: hidden;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary-light);
-        }
-
-        /* Decorative top accent for cards */
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), #ff9e50);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .card:hover::before { transform: scaleX(1); }
-
-        .card-date {
-            font-size: 0.8rem;
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-block;
-            background: var(--primary-light);
-            padding: 4px 10px;
-            border-radius: 4px;
-            align-self: flex-start;
-        }
-
-        .card h3 { margin-bottom: 15px; font-size: 1.4rem; }
-
-        .card ul {
-            list-style: none;
-            margin-top: 20px;
-            flex-grow: 1; /* Pushes button down if card height varies */
-        }
-
-        .card ul li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        .card ul li::before {
-            content: '•';
-            color: var(--primary-color);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .link-text {
-            display: inline-block;
-            margin-top: 20px;
-            font-weight: 600;
-            color: var(--primary-color);
-            border-bottom: 2px solid transparent;
-        }
-        .link-text:hover { border-bottom-color: var(--primary-color); }
-
-        /* --- CERTIFICATIONS --- */
-        .badge-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .badge {
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            border: 1px solid #eee;
-            transition: 0.3s;
-        }
-
-        .badge:hover {
-            box-shadow: var(--shadow-sm);
-            border-color: var(--primary-color);
-        }
-
-        .badge-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            background: var(--primary-light);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-        }
-
-        .badge-info h4 { font-size: 1.1rem; margin-bottom: 4px; }
-        .badge-info p { font-size: 0.85rem; margin: 0; }
-
-        /* --- FOOTER --- */
-        footer {
-            background: #e66400;
-            color: #fff;
-            padding: 80px 8% 30px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
-            gap: 40px;
-        }
-
-        .footer-info h3 { color: rgb(0, 0, 0); margin-bottom: 10px; font-size: 1.8rem; }
-        .footer-info p { opacity: 1; }
-
-        .social-links { margin-top: 20px; display: flex; gap: 15px; }
-        .social-links a {
-            width: 40px; height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-        .social-links a:hover {
-            background: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            opacity: 0.8;
-        }
-        .contact-item:hover { opacity: 1; color: var(--primary-color); }
-
-        /* --- ANIMATIONS --- */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .hero { flex-direction: column; text-align: center; gap: 50px; justify-content: center; }
-            .hero-content { max-width: 100%; }
-            .hero-title { font-size: 2.8rem; }
-            .hero-image-container { width: 300px; height: 300px; margin: 0 auto; }
-            
-            .about-section { flex-direction: column; }
-            
-            nav { display: none; } /* Hide nav links on mobile for cleaner look */
-            
-            /* Show simple contact button centered on mobile */
-            header .btn-primary { display: block; margin-left: auto; }
-            header { padding: 15px 5%; }
-        }
-    </style>
+@media(max-width:768px){
+  .hero-text h1{font-size:2.2rem;}
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">Abhijeet<span>.</span></div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-            </ul>
-        </nav>
-        <a href="mailto:argaikwad24@gmail.com" class="btn btn-primary">Let's Talk</a>
-    </header>
+<canvas id="particles"></canvas>
 
-    <section class="hero section-padding" id="home">
-        <div class="hero-content">
-            <span class="section-subtitle">HELLO, I AM</span>
-            <h1 class="hero-title">Abhijeet Gaikwad</h1>
-            <p class="hero-desc">
-                A Computer Science Engineering student based in <b>Dharashiv, Maharashtra</b>. 
-                I specialize in <b>Full-Stack Web Development</b>, Data Analytics, and Machine Learning. 
-                Passionate about building scalable systems and explaining AI through XAI solutions.
-            </p>
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="https://github.com/abhijeetg10" target="_blank" class="btn btn-outline">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </div>
-        </div>
-        <div class="hero-image-container">
-            <div class="hero-blob"></div>
-            <img src="Abhi.jpg" alt="Abhijeet Gaikwad" class="hero-img">
-        </div>
-    </section>
+<nav>
+  <div><strong style="color:var(--accent)">Aditya Jagtap</strong></div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-    <section class="about-section section-padding" id="about">
-        <div class="about-text">
-            <span class="section-subtitle">BIOGRAPHY</span>
-            <h2 class="section-title">About Me</h2>
-            <p>
-                I am currently pursuing a <b>Bachelor of Engineering (B.E.)</b> in Computer Science & Information Technology at Rajarambapu Institute of Technology, Sangli, holding a <b>CGPA of 8.61</b>.
-                <br><br>
-                My technical journey involves developing real-world applications like the startup platform <i>CustomArt</i> and the award-winning agricultural solution <i>KrushiSanvad</i>. Beyond coding, I enjoy graphic designing, painting, and playing cricket & kabaddi.
-            </p>
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-text">
+      <h1>Aditya <span>Sudhir Jagtap</span></h1>
+      <p>
+        B.Tech Computer Science & Information Technology (CGPA: 8.25).  
+        MERN Stack Developer building automation systems and engineering-driven digital products.
+      </p>
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="Aditya_Jagtap_Resume.pdf" class="btn">Download Resume</a>
+    </div>
+    <img src="aditya.jpeg" alt="Aditya Jagtap" class="profile-img">
+  </div>
+</section>
 
-            <div class="skills-wrapper">
-                <div class="skill-category">
-                    <h4><i class="fas fa-code"></i> Web Development (MERN)</h4>
-                    <div class="tags-container">
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Express.js</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Figma UI/UX</span>
-                    </div>
-                </div>
+<section id="about">
+  <h2 class="section-title">About</h2>
+  <p>
+    Computer Science & Information Technology student at RIT Sangli (CGPA: 8.25).
+    Alongside my specialization, I pursue a Minor in Product Design & Development (Mechanical Engineering).
+    My interests focus on web development using mern stack.
+  </p>
+</section>
 
-                <div class="skill-category">
-                    <h4><i class="fas fa-brain"></i> Data Science & AI</h4>
-                    <div class="tags-container">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Pandas & NumPy</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">SHAP (XAI)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Bridge Break Detection System</h3>
+      <p>IoT-based structural failure detection system inspired by the Mahad bridge incident.</p>
+    </div>
+    <div class="card">
+      <h3>Workflow Automation Platform</h3>
+      <p>Automation system inspired by n8n & Zapier using REST APIs and event-driven architecture.</p>
+    </div>
+  </div>
+</section>
 
-    <section class="portfolio-section section-padding" id="projects">
-        <span class="section-subtitle">PORTFOLIO</span>
-        <h2 class="section-title">Featured Projects</h2>
-        
-        <div class="grid-container">
-            <div class="card">
-                <span class="card-date">Aug 2023 - Present</span>
-                <h3>CustomArt</h3>
-                <p>A live full-stack website developed for a startup to sell custom art pieces.</p>
-                <ul>
-                    <li>Implemented responsive UI and backend APIs.</li>
-                    <li>Integrated database management for real-time operations.</li>
-                    <li><b>Tech:</b> MERN Stack, Figma, Database Integration.</li>
-                </ul>
-                <a href="https://customart.in" target="_blank" class="link-text">Visit Live Site &rarr;</a>
-            </div>
+<section id="experience">
+  <h2 class="section-title">Experience</h2>
+  <div class="card">
+    <h3>Technical Co-Head – CSITE Committee</h3>
+    <p>Leading technical event planning and execution for Infotsav, managing coordination and logistics.</p>
+  </div>
+</section>
 
-            <div class="card">
-                <span class="card-date">Dec 2025 - Feb 2026</span>
-                <h3>KrushiSanvad</h3>
-                <p>An agricultural platform for soil testing and crop recommendations.</p>
-                <ul>
-                    <li><b>Award:</b> Rank 1 in First Year EEDP Project (96 teams).</li>
-                    <li>Built ML models for fertilizer recommendation based on soil parameters.</li>
-                    <li>Integrated SHAP (Explainable AI) to explain predictions to farmers.</li>
-                </ul>
-            </div>
+<section id="certificates">
+  <h2 class="section-title">Certifications</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Java Foundation</h3>
+      <p>Oracle</p>
+    </div>
+    <div class="card">
+      <h3>Introduction to NoSQL Database</h3>
+      <p>Infosys Springboard</p>
+    </div>
+    <div class="card">
+      <h3>Operating System</h3>
+      <p>NPTEL</p>
+    </div>
+  </div>
+</section>
 
-            <div class="card">
-                <span class="card-date">Feb 2026</span>
-                <h3>Infotsav 2K26 Website</h3>
-                <p>Official event management website for the RIT IT Department's technical symposium.</p>
-                <ul>
-                    <li>Designed responsive interface for event schedules and details.</li>
-                    <li>Used Google Sheets as a lightweight backend to save registration data.</li>
-                    <li><b>Tech:</b> HTML/CSS, JS, Google Sheets API.</li>
-                </ul>
-                <a href="https://abhijeetg10.github.io/Infotsav/" target="_blank" class="link-text">Visit Live Site &rarr;</a>
-            </div>
-        </div>
-    </section>
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-info">
+    📞 +91 8652718892 <br>
+    📧 adityajagtap2965@gmail.com <br>
+    🔗 <a href="https://www.linkedin.com/in/adityajagtap6" target="_blank">LinkedIn</a> <br>
+    💻 <a href="https://github.com/" target="_blank">GitHub</a>
+  </div>
+</section>
 
-    <section class="section-padding" style="background: var(--bg-off-white);" id="experience">
-        <span class="section-subtitle">JOURNEY</span>
-        <h2 class="section-title">Leadership Experience</h2>
-        
-        <div class="grid-container">
-            <div class="card">
-                <span class="card-date">Dec 2025 - Present</span>
-                <h3>Chief of Media & Publicity</h3>
-                <p style="font-weight: 600; color: var(--text-dark);">Rise and Recruit Club</p>
-                <ul>
-                    <li>Leading branding and publicity strategy for institutional events.</li>
-                    <li>Managing digital media campaigns and social media presence.</li>
-                </ul>
-            </div>
+<footer>
+© 2026 Aditya Sudhir Jagtap — Executive Engineering Portfolio
+</footer>
 
-            <div class="card">
-                <span class="card-date">Aug 2025 - Dec 2025</span>
-                <h3>Associate - Social Media</h3>
-                <p style="font-weight: 600; color: var(--text-dark);">Rise and Recruit Club</p>
-                <ul>
-                    <li>Managed LinkedIn and Instagram handles.</li>
-                    <li>Created graphic designs and promotional content.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    <section class="achievements section-padding">
-        <h2 class="section-title">Certifications</h2>
-        <div class="badge-grid">
-            <div class="badge">
-                <div class="badge-icon"><i class="fas fa-shield-alt"></i></div>
-                <div class="badge-info">
-                    <h4>Zscaler Zero Trust</h4>
-                    <p>Cyber Associate (ZTCA)</p>
-                </div>
-            </div>
-            <div class="badge">
-                <div class="badge-icon"><i class="fab fa-android"></i></div>
-                <div class="badge-info">
-                    <h4>Android Developer</h4>
-                    <p>EduSkills Virtual Internship</p>
-                </div>
-            </div>
-            <div class="badge">
-                <div class="badge-icon"><i class="fas fa-chart-line"></i></div>
-                <div class="badge-info">
-                    <h4>Data Science</h4>
-                    <p>Board Infinity</p>
-                </div>
-            </div>
-        </div>
-    </section>
+let particles = [];
+let mouse = {x:null,y:null};
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>Abhijeet Gaikwad</h3>
-                <p>Full-Stack Developer & Data Analyst. <br>Building the future, one line of code at a time.</p>
-                <div class="social-links">
-                    <a href="https://linkedin.com/in/argaikwad24" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/abhijeetg10" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="mailto:argaikwad24@gmail.com"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-            <div class="footer-contact">
-                <h4 style="color:white; margin-bottom: 20px;">Contact Info</h4>
-                <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Dharashiv, Maharashtra</div>
-                <div class="contact-item"><i class="fas fa-phone-alt"></i> +91 7745877952</div>
-                <div class="contact-item"><i class="fas fa-envelope"></i> argaikwad24@gmail.com</div>
-            </div>
-        </div>
-        <hr style="border-color: rgba(255,255,255,0.1); margin-bottom: 20px;">
-        <p style="text-align: center; font-size: 0.85rem; opacity: 0.5;">&copy; 2026 Abhijeet Gaikwad. All Rights Reserved.</p>
-    </footer>
+window.addEventListener("mousemove",(e)=>{
+  mouse.x = e.x;
+  mouse.y = e.y;
+});
+
+class Particle{
+  constructor(){
+    this.x = Math.random()*canvas.width;
+    this.y = Math.random()*canvas.height;
+    this.size = Math.random()*3+1;
+    this.baseX = this.x;
+    this.baseY = this.y;
+    this.density = Math.random()*40+5;
+    this.color = Math.random()>0.5 ? "#C5A880" : "#2A4D45";
+  }
+  draw(){
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x,this.y,this.size,this.size);
+  }
+  update(){
+    let dx = mouse.x - this.x;
+    let dy = mouse.y - this.y;
+    let distance = Math.sqrt(dx*dx+dy*dy);
+    let maxDistance = 120;
+    if(distance < maxDistance){
+      let force = (maxDistance-distance)/maxDistance;
+      this.x -= dx/distance * force * this.density * 0.05;
+      this.y -= dy/distance * force * this.density * 0.05;
+    } else {
+      this.x += (this.baseX - this.x) * 0.02;
+      this.y += (this.baseY - this.y) * 0.02;
+    }
+  }
+}
+
+function init(){
+  particles=[];
+  for(let i=0;i<180;i++){
+    particles.push(new Particle());
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{p.update();p.draw();});
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
+</script>
 
 </body>
 </html>
