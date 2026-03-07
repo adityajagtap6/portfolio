@@ -4,185 +4,985 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aditya Sudhir Jagtap | Executive Portfolio</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  <title>Aditya Sudhir Jagtap</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --bg: #0A1118;
-      --surface: #141C24;
-      --text-primary: #E8EAE6;
-      --text-secondary: #9CA3AF;
-      --accent: #C5A880;
-      --secondary-accent: #2A4D45;
+      --ink: #0D0D0D;
+      --paper: #F5F0E8;
+      --cream: #EDE7D9;
+      --gold: #B8863A;
+      --gold-light: #D4A853;
+      --rust: #8B3A2A;
+      --forest: #1E3A2F;
+      --muted: #6B6560;
+      --line: rgba(13, 13, 13, 0.12);
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
     body {
-      background: var(--bg);
-      color: var(--text-primary);
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
       overflow-x: hidden;
+      cursor: none;
     }
 
-    canvas {
+    /* Custom cursor */
+    .cursor {
       position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease;
+      mix-blend-mode: multiply;
     }
 
+    .cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      mix-blend-mode: multiply;
+    }
+
+    .cursor-ring.hover {
+      transform: scale(2);
+      border-color: var(--rust);
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ─── NAV ─── */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 20px 10%;
+      z-index: 1000;
+      padding: 28px 7%;
       display: flex;
       justify-content: space-between;
-      background: rgba(10, 17, 24, 0.85);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
+      align-items: center;
+      background: rgba(245, 240, 232, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
     }
 
-    nav a {
-      color: var(--text-secondary);
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
       text-decoration: none;
-      margin-left: 25px;
+    }
+
+    .nav-logo em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.8rem;
       font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.25s;
     }
 
-    nav a:hover {
-      color: var(--accent);
+    .nav-links a:hover {
+      color: var(--ink);
     }
 
-    section {
-      padding: 120px 10%;
-    }
-
-    h1,
-    h2,
-    h3 {
-      font-weight: 600;
-    }
-
-    p {
-      color: var(--text-secondary);
-      line-height: 1.8;
-    }
-
+    /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 10% 7% 8% 7%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
+      gap: 12px;
     }
 
-    .hero-container {
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      line-height: 1.0;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .hero-name .italic-part {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 28px 0 32px;
+      padding-left: 2px;
+    }
+
+    .hero-bio {
+      max-width: 420px;
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--muted);
+      border-left: 2px solid var(--gold);
+      padding-left: 20px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
       display: flex;
-      justify-content: space-between;
+      gap: 16px;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 60px;
-      width: 100%;
-    }
-
-    .hero-text h1 {
-      font-size: 3rem;
-    }
-
-    .hero-text span {
-      color: var(--accent);
-    }
-
-    .hero-text p {
-      margin: 25px 0;
-      max-width: 550px;
-    }
-
-    .profile-img {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 12px;
-      background: var(--surface);
-      padding: 6px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 500;
-      margin-right: 12px;
-      transition: 0.3s;
-      border: 1px solid var(--accent);
-      color: var(--accent);
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: #0A1118;
+      display: inline-block;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 14px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn:hover {
-      opacity: 0.85;
-      transform: translateY(-2px);
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover::after {
+      transform: scaleX(1);
+    }
+
+    .btn-primary:hover {
+      background: var(--forest);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      color: var(--ink);
+      padding: 14px 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--gold);
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      color: var(--gold);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--cream);
+      z-index: 0;
+    }
+
+    .hero-photo-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .hero-photo-wrap img {
+      width: 78%;
+      max-width: 360px;
+      height: 100%;
+      max-height: 85vh;
+      object-fit: cover;
+      object-position: top;
+      filter: sepia(8%) contrast(1.05);
+    }
+
+    .hero-geo {
+      position: absolute;
+      top: 10%;
+      right: 8%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .geo-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(245, 240, 232, 0.8);
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-number {
+      position: absolute;
+      bottom: 8%;
+      left: 6%;
+      z-index: 2;
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      font-weight: 900;
+      color: rgba(13, 13, 13, 0.05);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 7%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      z-index: 2;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gold);
+      animation: slide 2s infinite;
+    }
+
+    @keyframes slide {
+      to {
+        left: 100%;
+      }
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-inner {
+      padding: 120px 7%;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 70px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
     }
 
     .section-title {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1;
     }
 
-    .grid {
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
     }
 
-    .card {
-      background: var(--surface);
-      padding: 35px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: 0.3s;
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
     }
 
-    .card:hover {
-      border-color: var(--accent);
+    .stat-item {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 28px;
+    }
+
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .stat-value span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 50px;
+    }
+
+    .skill-block {
+      background: var(--paper);
+      padding: 28px 24px;
+      transition: background 0.3s;
+    }
+
+    .skill-block:hover {
+      background: var(--cream);
+    }
+
+    .skill-block-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .skill-block-items {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ─── PROJECTS ─── */
+    .projects-bg {
+      background: var(--ink);
+    }
+
+    .projects-bg .section-title {
+      color: var(--paper);
+    }
+
+    .projects-bg .section-num {
+      color: var(--gold);
+    }
+
+    .projects-bg .section-header {
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+
+    .project-row:hover .project-num {
+      color: var(--gold);
+    }
+
+    .project-row:hover .project-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .project-row:hover {
+      background: rgba(255, 255, 255, 0.02);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin: 0 -16px;
+    }
+
+    .project-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.2);
+      transition: color 0.3s;
+      text-align: right;
+    }
+
+    .project-content {}
+
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--paper);
+      margin-bottom: 10px;
+      line-height: 1.1;
+    }
+
+    .project-desc {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: rgba(245, 240, 232, 0.45);
+      max-width: 620px;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(184, 134, 58, 0.3);
+      padding: 4px 10px;
+    }
+
+    .project-arrow {
+      font-size: 1.5rem;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.35s ease;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .exp-timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .exp-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 0;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .exp-item {
+      position: relative;
+      padding-bottom: 60px;
+    }
+
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: -38px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--gold);
+      background: var(--paper);
+      border-radius: 50%;
+    }
+
+    .exp-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .exp-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .exp-org {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+
+    .exp-desc {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 580px;
+    }
+
+    /* ─── CERTIFICATIONS ─── */
+    .certs-bg {
+      background: var(--cream);
+    }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .cert-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 36px 30px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s, box-shadow 0.35s;
+    }
+
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--gold);
+      transition: height 0.4s;
+    }
+
+    .cert-card:hover::before {
+      height: 100%;
+    }
+
+    .cert-card:hover {
       transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
     }
 
-    .contact-info {
-      font-size: 16px;
-      line-height: 2;
+    .cert-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      display: block;
     }
 
-    .contact-info a {
-      color: var(--accent);
+    .cert-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .cert-issuer {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Achievements */
+    .achievements {
+      margin-top: 60px;
+    }
+
+    .achievements-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .ach-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ach-item {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .ach-item:hover {
+      border-color: var(--gold);
+      background: var(--paper);
+    }
+
+    .ach-icon {
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .ach-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-bg {
+      background: var(--forest);
+    }
+
+    .contact-bg .section-num {
+      color: var(--gold);
+    }
+
+    .contact-bg .section-header {
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .contact-bg .section-title {
+      color: var(--paper);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-intro {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      color: rgba(245, 240, 232, 0.6);
+      margin-bottom: 48px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       text-decoration: none;
+      color: var(--paper);
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      group: true;
     }
 
+    .contact-link:hover {
+      color: var(--gold-light);
+      padding-left: 12px;
+    }
+
+    .contact-link-icon {
+      font-size: 1rem;
+      width: 20px;
+      flex-shrink: 0;
+      opacity: 0.5;
+    }
+
+    .contact-link:hover .contact-link-icon {
+      opacity: 1;
+    }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-detail-block {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 28px;
+    }
+
+    .contact-detail-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .contact-detail-value {
+      font-size: 0.95rem;
+      color: rgba(245, 240, 232, 0.7);
+    }
+
+    /* ─── FOOTER ─── */
     footer {
-      padding: 50px 10%;
-      text-align: center;
-      color: var(--text-secondary);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      margin-top: 80px;
+      background: var(--ink);
+      padding: 50px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    @media(max-width:768px) {
-      .hero-text h1 {
-        font-size: 2.2rem;
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--paper);
+      opacity: 0.4;
+    }
+
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.25);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-right {
+        height: 55vw;
+        min-height: 300px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .project-row {
+        grid-template-columns: 40px 1fr;
+      }
+
+      .project-arrow {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .section-inner {
+        padding: 80px 5%;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
       }
     }
   </style>
@@ -190,193 +990,404 @@
 
 <body>
 
-  <canvas id="particles"></canvas>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
+  <!-- NAV -->
   <nav>
-    <div><strong style="color:var(--accent)">Aditya Jagtap</strong></div>
-    <div>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#certificates">Certificates</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <a href="#" class="nav-logo">Aditya <em>Jagtap</em></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-container">
-      <div class="hero-text">
-        <h1>Aditya <span>Sudhir Jagtap</span></h1>
-        <p>
-          B.Tech Computer Science & Information Technology (CGPA: 8.25).
-          MERN Stack Developer building automation systems and engineering-driven digital products.
-        </p>
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="Aditya_Jagtap_Resume.pdf" class="btn">Download Resume</a>
+    <div class="hero-left">
+      <div class="hero-eyebrow reveal">CSIT Engineer · Product Thinker</div>
+      <h1 class="hero-name reveal reveal-delay-1">
+        Aditya<br>
+        <span class="italic-part">Sudhir</span><br>
+        Jagtap
+      </h1>
+      <div class="hero-title reveal reveal-delay-2">MERN Stack · Full-Stack Developer</div>
+      <p class="hero-bio reveal reveal-delay-3">
+        Engineering student at KE's Rajarambapu Institute of Technology with a <strong>CGPA of 8.25</strong>.
+        Building automation systems and user-centric digital products at the intersection of
+        <strong>software development</strong> and <strong>product design</strong>.
+      </p>
+      <div class="hero-actions reveal reveal-delay-4">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="Aditya_Jagtap_Resume.pdf" class="btn-secondary" download>Download Résumé</a>
       </div>
-      <img src="aditya.jpeg" alt="Aditya Jagtap" class="profile-img">
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-wrap">
+        <img src="aditya.jpeg" alt="Aditya Sudhir Jagtap">
+      </div>
+      <div class="hero-geo">
+        <div class="geo-badge">Wai, Satara</div>
+        <div class="geo-badge">Maharashtra, India</div>
+      </div>
+      <div class="hero-number">01</div>
+    </div>
+    <div class="hero-scroll">
+      <span class="scroll-line"></span>
+      Scroll to explore
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
-    <h2 class="section-title">About</h2>
-    <p>
-      Aditya Sudhir Jagtap is a Computer Science & Information Technology (CSIT) engineering student with a CGPA of
-      8.25, skilled in HTML, CSS, JavaScript, Java, and Object-Oriented Programming (OOP). Along with his core degree,
-      he is pursuing a Minor in Product Design & Development (Mechanical Engineering), gaining knowledge in behavioral
-      engineering, ergonomics, aesthetics, marketing, and new product development. He is interested in building
-      user-centric products by combining software development with product design fundamentals and engineering-driven
-      problem solving.
-    </p>
-  </section>
-
-  <section id="projects">
-    <h2 class="section-title">Projects</h2>
-
-    <div class="grid">
-
-      <div class="card">
-
-        <img src="Picture1.jpg" alt="Bridge Break Detection Project"
-          style="width:100%; border-radius:8px; margin-bottom:15px;">
-
-        <h3>Bridge Break Detection System</h3>
-
-        <p>
-          This project was inspired by the tragic Mahad bridge collapse incident where many lives were lost due to
-          sudden structural failure.
-          To address this problem, we designed an early warning safety system capable of detecting bridge collapse and
-          immediately alerting nearby vehicles and authorities.
-          When a bridge failure is detected, the system activates a red signal and siren near the bridge to warn
-          approaching vehicles while simultaneously sending notifications to responsible authorities through a dedicated
-          mobile application.
-          The application was developed using MIT App Inventor to deliver instant alerts to the concerned departments
-          and organizations.
-          This project focuses on improving public safety infrastructure by providing real-time alerts that can help
-          prevent accidents and reduce potential loss of life.
-          The project received recognition and secured 3rd rank in the college project competition.
-        </p>
-
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-num">02</span>
+        <h2 class="section-title">About <em>Me</em></h2>
       </div>
+      <div class="about-grid">
+        <div class="about-stats">
+          <div class="stat-item reveal reveal-delay-1">
+            <div class="stat-value">8.25<span>*</span></div>
+            <div class="stat-label">CGPA · B.Tech CSIT</div>
+          </div>
+          <div class="stat-item reveal reveal-delay-2">
+            <div class="stat-value">2+</div>
+            <div class="stat-label">Projects Shipped</div>
+          </div>
+          <div class="stat-item reveal reveal-delay-3">
+            <div class="stat-value">3<span>rd</span></div>
+            <div class="stat-label">College Project Exhibition Rank</div>
+          </div>
+          <div class="stat-item reveal reveal-delay-4">
+            <div class="stat-value">2×</div>
+            <div class="stat-label">Intercollege Volleyball Runner-Up</div>
+          </div>
+        </div>
+        <div class="about-text reveal reveal-delay-2">
+          <p>
+            I'm a <strong>Computer Science & IT</strong> engineering student passionate about building digital products
+            that are both technically sound and beautifully designed. My CGPA of 8.25 reflects consistent academic
+            excellence, but my real passion lies in shipping things that work.
+          </p>
+          <p>
+            Alongside my core CSIT degree, I'm pursuing a <strong>Minor in Product Design & Development</strong>
+            (Mechanical Engineering), studying behavioral engineering, ergonomics, aesthetics, and new product
+            development. This cross-disciplinary path shapes how I think about software — not just as code,
+            but as an experience.
+          </p>
+          <p>
+            I'm driven by <strong>engineering-driven problem solving</strong> — from a safety system inspired by
+            a real bridge collapse tragedy to automation platforms that eliminate repetitive work.
+          </p>
 
-
-      <div class="card">
-
-        <h3>Workflow Automation Platform (n8n / Zapier Inspired)</h3>
-
-        <p>
-          Project description and project image will be added here after completion.
-          This project focuses on building an automation platform that connects multiple digital services
-          and automates repetitive tasks through event-based workflows and API integrations.
-        </p>
-
+          <div class="skills-grid">
+            <div class="skill-block">
+              <div class="skill-block-label">Languages</div>
+              <div class="skill-block-items">C · Java · SQL<br>HTML · CSS · JavaScript</div>
+            </div>
+            <div class="skill-block">
+              <div class="skill-block-label">Frameworks & DB</div>
+              <div class="skill-block-items">Next.js · Node.js<br>MySQL · MongoDB</div>
+            </div>
+            <div class="skill-block">
+              <div class="skill-block-label">Tools</div>
+              <div class="skill-block-items">Git · Figma · VS Code<br>Canva · AutoCAD</div>
+            </div>
+            <div class="skill-block">
+              <div class="skill-block-label">Soft Skills</div>
+              <div class="skill-block-items">Quick Learner<br>Communication · Teamwork</div>
+            </div>
+          </div>
+        </div>
       </div>
-
     </div>
-
   </section>
 
+  <!-- PROJECTS -->
+  <section id="projects" class="projects-bg">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-num">03</span>
+        <h2 class="section-title" style="color:var(--paper)">Selected <em>Work</em></h2>
+      </div>
+      <div class="projects-list">
+
+        <div class="project-row reveal">
+          <div class="project-num">01</div>
+          <div class="project-content">
+            <div class="project-name">Bridge Break Detection System</div>
+            <div class="project-desc">
+              Inspired by the Mahad bridge collapse, this early-warning safety system detects structural failure
+              in real time, activates red signal alerts and sirens for approaching vehicles, and simultaneously
+              notifies authorities via a dedicated mobile application built in MIT App Inventor.
+              Secured 3rd rank at the college project exhibition.
+            </div>
+            <div class="project-tags">
+              <span class="tag">IoT</span>
+              <span class="tag">MIT App Inventor</span>
+              <span class="tag">Public Safety</span>
+              <span class="tag">Hardware</span>
+            </div>
+          </div>
+          <div class="project-arrow">→</div>
+        </div>
+
+        <div class="project-row reveal reveal-delay-1">
+          <div class="project-num">02</div>
+          <div class="project-content">
+            <div class="project-name">Workflow Automation Platform</div>
+            <div class="project-desc">
+              An n8n / Zapier-inspired automation platform that connects multiple services via APIs and
+              event-based triggers. Built with webhook handling, conditional logic, and modular task execution
+              modules — focused on eliminating repetitive work through intelligent workflow architecture.
+            </div>
+            <div class="project-tags">
+              <span class="tag">REST APIs</span>
+              <span class="tag">Webhooks</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Backend</span>
+            </div>
+          </div>
+          <div class="project-arrow">→</div>
+        </div>
+
+        <div class="project-row reveal reveal-delay-2">
+          <div class="project-num">03</div>
+          <div class="project-content">
+            <div class="project-name">Personal Portfolio Website</div>
+            <div class="project-desc">
+              A responsive personal portfolio built from scratch with HTML, CSS, and JavaScript — implementing
+              modern UI principles, smooth navigation, particle animations, and full mobile responsiveness.
+              Live at adityajagtap6.github.io/portfolio/
+            </div>
+            <div class="project-tags">
+              <span class="tag">HTML/CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">UI Design</span>
+              <span class="tag">Responsive</span>
+            </div>
+          </div>
+          <div class="project-arrow">→</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
   <section id="experience">
-    <h2 class="section-title">Experience</h2>
-    <div class="card">
-      <h3>Technical Co-Head – CSITE Committee (Nov 2025 - Present)</h3>
-      <p>Leading technical event planning and execution for Infotsav, managing coordination and logistics.</p>
-    </div>
-  </section>
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-num">04</span>
+        <h2 class="section-title"><em>Experience</em></h2>
+      </div>
 
-  <section id="certificates">
-    <h2 class="section-title">Certifications</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Java Foundation</h3>
-        <p>Oracle</p>
-      </div>
-      <div class="card">
-        <h3>UI/UX for web developers</h3>
-        <p>Infosys Springboard</p>
-      </div>
-      <div class="card">
-        <h3>Operating System</h3>
-        <p>NPTEL</p>
+      <div class="exp-timeline">
+
+        <div class="exp-item reveal">
+          <div class="exp-date">Nov 2025 — Present</div>
+          <div class="exp-role">Technical Co-Head</div>
+          <div class="exp-org">CSITE Committee · KE's Rajarambapu Institute of Technology</div>
+          <div class="exp-desc">
+            Leading technical event planning and execution for Infotsav — managing coordination,
+            logistics, and cross-team collaboration for the college's flagship tech fest.
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2 class="section-title">Contact</h2>
-    <div class="contact-info">
-      📞 +91 8652718892 <br>
-      📧 adityajagtap2965@gmail.com <br>
-      🔗 <a href="https://www.linkedin.com/in/adityajagtap6" target="_blank">LinkedIn</a> <br>
-      💻 <a href="https://github.com/" target="_blank">GitHub</a>
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-num">05</span>
+        <h2 class="section-title"><em>Education</em></h2>
+      </div>
+
+      <div class="exp-timeline">
+
+        <div class="exp-item reveal">
+          <div class="exp-date">Aug 2023 — Present</div>
+          <div class="exp-role">B.Tech Computer Science & IT</div>
+          <div class="exp-org">KE's Rajarambapu Institute of Technology, Sangli · CGPA 8.25</div>
+          <div class="exp-desc">
+            Core CSIT degree with a Minor in Product Design & Development (Mechanical Engineering).
+            Studying behavioral engineering, ergonomics, aesthetics, marketing, and new product development.
+          </div>
+        </div>
+
+        <div class="exp-item reveal reveal-delay-1">
+          <div class="exp-date">June 2023</div>
+          <div class="exp-role">Higher Secondary Certificate (HSC)</div>
+          <div class="exp-org">Disha Junior College, Wai · 66.17%</div>
+          <div class="exp-desc">
+            Completed Higher Secondary education with a focus on Science stream.
+          </div>
+        </div>
+
+        <div class="exp-item reveal reveal-delay-2">
+          <div class="exp-date">June 2021</div>
+          <div class="exp-role">Secondary School Certificate (SSC)</div>
+          <div class="exp-org">Blossom Children's Academy, Wai · 91.20%</div>
+          <div class="exp-desc">
+            Achieved 91.20% in the State Board SSC examination — a strong academic foundation.
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="certs-bg">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Certifications &amp; <em>Achievements</em></h2>
+      </div>
+
+      <div class="certs-grid">
+        <div class="cert-card reveal">
+          <span class="cert-icon">☕</span>
+          <div class="cert-name">Java Foundation</div>
+          <div class="cert-issuer">Oracle</div>
+        </div>
+        <div class="cert-card reveal reveal-delay-1">
+          <span class="cert-icon">🎨</span>
+          <div class="cert-name">UI/UX for Web Developers</div>
+          <div class="cert-issuer">Infosys Springboard</div>
+        </div>
+        <div class="cert-card reveal reveal-delay-2">
+          <span class="cert-icon">🖥️</span>
+          <div class="cert-name">Operating Systems</div>
+          <div class="cert-issuer">NPTEL</div>
+        </div>
+      </div>
+
+      <div class="achievements">
+        <div class="achievements-title">Highlights</div>
+        <div class="ach-list">
+          <div class="ach-item reveal">
+            <span class="ach-icon">🥉</span>
+            <span class="ach-text"><strong>3rd Rank</strong> — College Project Exhibition (Bridge Break Detection
+              System)</span>
+          </div>
+          <div class="ach-item reveal reveal-delay-1">
+            <span class="ach-icon">🏐</span>
+            <span class="ach-text"><strong>Two-time Intercollege Volleyball Runner-Up</strong> — competing at
+              intercollegiate level</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-bg">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Get In <em>Touch</em></h2>
+      </div>
+      <div class="contact-layout">
+        <div>
+          <p class="contact-intro reveal">
+            I'm currently open to internship opportunities, collaborative projects, and conversations
+            about product development or full-stack engineering. Don't hesitate to reach out.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:adityajagtap2965@gmail.com" class="contact-link reveal">
+              <span class="contact-link-icon">✉</span>
+              adityajagtap2965@gmail.com
+            </a>
+            <a href="tel:+918652718892" class="contact-link reveal reveal-delay-1">
+              <span class="contact-link-icon">✆</span>
+              +91 86527 18892
+            </a>
+            <a href="https://www.linkedin.com/in/adityajagtap6" target="_blank"
+              class="contact-link reveal reveal-delay-2">
+              <span class="contact-link-icon">in</span>
+              linkedin.com/in/adityajagtap6
+            </a>
+            <a href="https://adityajagtap6.github.io/portfolio/" target="_blank"
+              class="contact-link reveal reveal-delay-3">
+              <span class="contact-link-icon">↗</span>
+              adityajagtap6.github.io/portfolio
+            </a>
+          </div>
+        </div>
+        <div class="contact-right reveal reveal-delay-2">
+          <div class="contact-detail-block">
+            <div class="contact-detail-label">Location</div>
+            <div class="contact-detail-value">Wai, Satara, Maharashtra, India</div>
+          </div>
+          <div class="contact-detail-block">
+            <div class="contact-detail-label">Institution</div>
+            <div class="contact-detail-value">KE's Rajarambapu Institute of Technology, Sangli</div>
+          </div>
+          <div class="contact-detail-block">
+            <div class="contact-detail-label">Status</div>
+            <div class="contact-detail-value">Open to Internships & Collaborations</div>
+          </div>
+          <a href="Aditya_Jagtap_Resume.pdf" class="btn-primary"
+            style="margin-top:8px; display:block; text-align:center;" download>
+            Download Résumé
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    © 2026 Aditya Sudhir Jagtap
+    <div class="footer-logo">Aditya Jagtap</div>
+    <div class="footer-copy">© 2026 · All rights reserved</div>
   </footer>
 
   <script>
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = -100, my = -100, rx = -100, ry = -100;
 
-    let particles = [];
-    let mouse = { x: null, y: null };
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
-    window.addEventListener("mousemove", (e) => {
-      mouse.x = e.x;
-      mouse.y = e.y;
+    function animCursor() {
+      cursor.style.left = mx - 5 + 'px';
+      cursor.style.top = my - 5 + 'px';
+      rx += (mx - rx) * 0.14;
+      ry += (my - ry) * 0.14;
+      ring.style.left = rx - 18 + 'px';
+      ring.style.top = ry - 18 + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+
+    document.querySelectorAll('a, button, .project-row, .cert-card').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
     });
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.density = Math.random() * 40 + 5;
-        this.color = Math.random() > 0.5 ? "#C5A880" : "#2A4D45";
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.size, this.size);
-      }
-      update() {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        let maxDistance = 120;
-        if (distance < maxDistance) {
-          let force = (maxDistance - distance) / maxDistance;
-          this.x -= dx / distance * force * this.density * 0.05;
-          this.y -= dy / distance * force * this.density * 0.05;
-        } else {
-          this.x += (this.baseX - this.x) * 0.02;
-          this.y += (this.baseY - this.y) * 0.02;
-        }
-      }
-    }
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    function init() {
-      particles = [];
-      for (let i = 0; i < 180; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(animate);
-    }
-
-    init();
-    animate();
+    // Hero immediate reveal
+    setTimeout(() => {
+      document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 120);
+      });
+    }, 100);
   </script>
-
 </body>
 
 </html>
