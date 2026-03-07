@@ -1,340 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aditya Sudhir Jagtap | Executive Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditya Sudhir Jagtap | Executive Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --bg:#0A1118;
-  --surface:#141C24;
-  --text-primary:#E8EAE6;
-  --text-secondary:#9CA3AF;
-  --accent:#C5A880;
-  --secondary-accent:#2A4D45;
-}
+  <style>
+    :root {
+      --bg: #0A1118;
+      --surface: #141C24;
+      --text-primary: #E8EAE6;
+      --text-secondary: #9CA3AF;
+      --accent: #C5A880;
+      --secondary-accent: #2A4D45;
+    }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-  scroll-behavior:smooth;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
 
-body{
-  background:var(--bg);
-  color:var(--text-primary);
-  overflow-x:hidden;
-}
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
 
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
-}
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
 
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:20px 10%;
-  display:flex;
-  justify-content:space-between;
-  background:rgba(10,17,24,0.85);
-  backdrop-filter:blur(10px);
-  z-index:1000;
-}
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 10%;
+      display: flex;
+      justify-content: space-between;
+      background: rgba(10, 17, 24, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
 
-nav a{
-  color:var(--text-secondary);
-  text-decoration:none;
-  margin-left:25px;
-  font-weight:500;
-}
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 500;
+    }
 
-nav a:hover{
-  color:var(--accent);
-}
+    nav a:hover {
+      color: var(--accent);
+    }
 
-section{
-  padding:120px 10%;
-}
+    section {
+      padding: 120px 10%;
+    }
 
-h1,h2,h3{
-  font-weight:600;
-}
+    h1,
+    h2,
+    h3 {
+      font-weight: 600;
+    }
 
-p{
-  color:var(--text-secondary);
-  line-height:1.8;
-}
+    p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
 
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-}
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
 
-.hero-container{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:60px;
-  width:100%;
-}
+    .hero-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 60px;
+      width: 100%;
+    }
 
-.hero-text h1{
-  font-size:3rem;
-}
+    .hero-text h1 {
+      font-size: 3rem;
+    }
 
-.hero-text span{
-  color:var(--accent);
-}
+    .hero-text span {
+      color: var(--accent);
+    }
 
-.hero-text p{
-  margin:25px 0;
-  max-width:550px;
-}
+    .hero-text p {
+      margin: 25px 0;
+      max-width: 550px;
+    }
 
-.profile-img{
-  width:300px;
-  height:300px;
-  object-fit:cover;
-  border-radius:12px;
-  background:var(--surface);
-  padding:6px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.4);
-}
+    .profile-img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: var(--surface);
+      padding: 6px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
 
-.btn{
-  display:inline-block;
-  padding:12px 28px;
-  border-radius:6px;
-  text-decoration:none;
-  font-weight:500;
-  margin-right:12px;
-  transition:0.3s;
-  border:1px solid var(--accent);
-  color:var(--accent);
-}
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-right: 12px;
+      transition: 0.3s;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
 
-.btn-primary{
-  background:var(--accent);
-  color:#0A1118;
-}
+    .btn-primary {
+      background: var(--accent);
+      color: #0A1118;
+    }
 
-.btn:hover{
-  opacity:0.85;
-  transform:translateY(-2px);
-}
+    .btn:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
 
-.section-title{
-  font-size:2rem;
-  margin-bottom:30px;
-  color:var(--accent);
-}
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--accent);
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
 
-.card{
-  background:var(--surface);
-  padding:35px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,0.05);
-  transition:0.3s;
-}
+    .card {
+      background: var(--surface);
+      padding: 35px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.3s;
+    }
 
-.card:hover{
-  border-color:var(--accent);
-  transform:translateY(-6px);
-}
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+    }
 
-.contact-info{
-  font-size:16px;
-  line-height:2;
-}
+    .contact-info {
+      font-size: 16px;
+      line-height: 2;
+    }
 
-.contact-info a{
-  color:var(--accent);
-  text-decoration:none;
-}
+    .contact-info a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-footer{
-  padding:50px 10%;
-  text-align:center;
-  color:var(--text-secondary);
-  border-top:1px solid rgba(255,255,255,0.05);
-  margin-top:80px;
-}
+    footer {
+      padding: 50px 10%;
+      text-align: center;
+      color: var(--text-secondary);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 80px;
+    }
 
-@media(max-width:768px){
-  .hero-text h1{font-size:2.2rem;}
-}
-</style>
+    @media(max-width:768px) {
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<canvas id="particles"></canvas>
+  <canvas id="particles"></canvas>
 
-<nav>
-  <div><strong style="color:var(--accent)">Aditya Jagtap</strong></div>
-  <div>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#certificates">Certificates</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-container">
-    <div class="hero-text">
-      <h1>Aditya <span>Sudhir Jagtap</span></h1>
-      <p>
-        B.Tech Computer Science & Information Technology (CGPA: 8.25).  
-        MERN Stack Developer building automation systems and engineering-driven digital products.
-      </p>
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="Aditya_Jagtap_Resume.pdf" class="btn">Download Resume</a>
+  <nav>
+    <div><strong style="color:var(--accent)">Aditya Jagtap</strong></div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
     </div>
-    <img src="aditya.jpeg" alt="Aditya Jagtap" class="profile-img">
-  </div>
-</section>
+  </nav>
 
-<section id="about">
-  <h2 class="section-title">About</h2>
-  <p>
-    Computer Science & Information Technology student at RIT Sangli (CGPA: 8.25).
-    Alongside my specialization, I pursue a Minor in Product Design & Development (Mechanical Engineering).
-    My interests focus on web development using mern stack.
-  </p>
-</section>
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>Aditya <span>Sudhir Jagtap</span></h1>
+        <p>
+          B.Tech Computer Science & Information Technology (CGPA: 8.25).
+          MERN Stack Developer building automation systems and engineering-driven digital products.
+        </p>
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="Aditya_Jagtap_Resume.pdf" class="btn">Download Resume</a>
+      </div>
+      <img src="aditya.jpeg" alt="Aditya Jagtap" class="profile-img">
+    </div>
+  </section>
 
-<section id="projects">
-  <h2 class="section-title">Projects</h2>
-  <div class="grid">
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <p>
+      Aditya Sudhir Jagtap is a Computer Science & Information Technology (CSIT) engineering student with a CGPA of
+      8.25, skilled in HTML, CSS, JavaScript, Java, and Object-Oriented Programming (OOP). Along with his core degree,
+      he is pursuing a Minor in Product Design & Development (Mechanical Engineering), gaining knowledge in behavioral
+      engineering, ergonomics, aesthetics, marketing, and new product development. He is interested in building
+      user-centric products by combining software development with product design fundamentals and engineering-driven
+      problem solving.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+
+    <div class="grid">
+
+      <div class="card">
+
+        <img src="Picture1.jpg" alt="Bridge Break Detection Project"
+          style="width:100%; border-radius:8px; margin-bottom:15px;">
+
+        <h3>Bridge Break Detection System</h3>
+
+        <p>
+          This project was inspired by the tragic Mahad bridge collapse incident where many lives were lost due to
+          sudden structural failure.
+          To address this problem, we designed an early warning safety system capable of detecting bridge collapse and
+          immediately alerting nearby vehicles and authorities.
+          When a bridge failure is detected, the system activates a red signal and siren near the bridge to warn
+          approaching vehicles while simultaneously sending notifications to responsible authorities through a dedicated
+          mobile application.
+          The application was developed using MIT App Inventor to deliver instant alerts to the concerned departments
+          and organizations.
+          This project focuses on improving public safety infrastructure by providing real-time alerts that can help
+          prevent accidents and reduce potential loss of life.
+          The project received recognition and secured 3rd rank in the college project competition.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>Workflow Automation Platform (n8n / Zapier Inspired)</h3>
+
+        <p>
+          Project description and project image will be added here after completion.
+          This project focuses on building an automation platform that connects multiple digital services
+          and automates repetitive tasks through event-based workflows and API integrations.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
     <div class="card">
-      <h3>Bridge Break Detection System</h3>
-      <p>IoT-based structural failure detection system inspired by the Mahad bridge incident.</p>
+      <h3>Technical Co-Head – CSITE Committee (Nov 2025 - Present)</h3>
+      <p>Leading technical event planning and execution for Infotsav, managing coordination and logistics.</p>
     </div>
-    <div class="card">
-      <h3>Workflow Automation Platform</h3>
-      <p>Automation system inspired by n8n & Zapier using REST APIs and event-driven architecture.</p>
+  </section>
+
+  <section id="certificates">
+    <h2 class="section-title">Certifications</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Java Foundation</h3>
+        <p>Oracle</p>
+      </div>
+      <div class="card">
+        <h3>UI/UX for web developers</h3>
+        <p>Infosys Springboard</p>
+      </div>
+      <div class="card">
+        <h3>Operating System</h3>
+        <p>NPTEL</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="experience">
-  <h2 class="section-title">Experience</h2>
-  <div class="card">
-    <h3>Technical Co-Head – CSITE Committee</h3>
-    <p>Leading technical event planning and execution for Infotsav, managing coordination and logistics.</p>
-  </div>
-</section>
-
-<section id="certificates">
-  <h2 class="section-title">Certifications</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Java Foundation</h3>
-      <p>Oracle</p>
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-info">
+      📞 +91 8652718892 <br>
+      📧 adityajagtap2965@gmail.com <br>
+      🔗 <a href="https://www.linkedin.com/in/adityajagtap6" target="_blank">LinkedIn</a> <br>
+      💻 <a href="https://github.com/" target="_blank">GitHub</a>
     </div>
-    <div class="card">
-      <h3>Introduction to NoSQL Database</h3>
-      <p>Infosys Springboard</p>
-    </div>
-    <div class="card">
-      <h3>Operating System</h3>
-      <p>NPTEL</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact">
-  <h2 class="section-title">Contact</h2>
-  <div class="contact-info">
-    📞 +91 8652718892 <br>
-    📧 adityajagtap2965@gmail.com <br>
-    🔗 <a href="https://www.linkedin.com/in/adityajagtap6" target="_blank">LinkedIn</a> <br>
-    💻 <a href="https://github.com/" target="_blank">GitHub</a>
-  </div>
-</section>
+  <footer>
+    © 2026 Aditya Sudhir Jagtap
+  </footer>
 
-<footer>
-© 2026 Aditya Sudhir Jagtap — Executive Engineering Portfolio
-</footer>
+  <script>
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-<script>
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    let particles = [];
+    let mouse = { x: null, y: null };
 
-let particles = [];
-let mouse = {x:null,y:null};
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
 
-window.addEventListener("mousemove",(e)=>{
-  mouse.x = e.x;
-  mouse.y = e.y;
-});
-
-class Particle{
-  constructor(){
-    this.x = Math.random()*canvas.width;
-    this.y = Math.random()*canvas.height;
-    this.size = Math.random()*3+1;
-    this.baseX = this.x;
-    this.baseY = this.y;
-    this.density = Math.random()*40+5;
-    this.color = Math.random()>0.5 ? "#C5A880" : "#2A4D45";
-  }
-  draw(){
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x,this.y,this.size,this.size);
-  }
-  update(){
-    let dx = mouse.x - this.x;
-    let dy = mouse.y - this.y;
-    let distance = Math.sqrt(dx*dx+dy*dy);
-    let maxDistance = 120;
-    if(distance < maxDistance){
-      let force = (maxDistance-distance)/maxDistance;
-      this.x -= dx/distance * force * this.density * 0.05;
-      this.y -= dy/distance * force * this.density * 0.05;
-    } else {
-      this.x += (this.baseX - this.x) * 0.02;
-      this.y += (this.baseY - this.y) * 0.02;
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.density = Math.random() * 40 + 5;
+        this.color = Math.random() > 0.5 ? "#C5A880" : "#2A4D45";
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+      }
+      update() {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        let maxDistance = 120;
+        if (distance < maxDistance) {
+          let force = (maxDistance - distance) / maxDistance;
+          this.x -= dx / distance * force * this.density * 0.05;
+          this.y -= dy / distance * force * this.density * 0.05;
+        } else {
+          this.x += (this.baseX - this.x) * 0.02;
+          this.y += (this.baseY - this.y) * 0.02;
+        }
+      }
     }
-  }
-}
 
-function init(){
-  particles=[];
-  for(let i=0;i<180;i++){
-    particles.push(new Particle());
-  }
-}
+    function init() {
+      particles = [];
+      for (let i = 0; i < 180; i++) {
+        particles.push(new Particle());
+      }
+    }
 
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{p.update();p.draw();});
-  requestAnimationFrame(animate);
-}
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
 
-init();
-animate();
-</script>
+    init();
+    animate();
+  </script>
 
 </body>
+
 </html>
